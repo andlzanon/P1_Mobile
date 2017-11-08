@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.localizator.R;
+import com.example.android.localizator.add_address.AddAddressPresenter;
 
 import java.util.List;
 
@@ -21,13 +22,12 @@ import butterknife.OnClick;
 public class AddressesAdapter extends RecyclerView.Adapter<AddressesAdapter.ViewHolder>{
 
     private List<String> addressesList;
-    Context context;
+    // interface responsavel pela resposta ao toque e por sua execucao na camada de visualizacao
+    private OnRecyclerViewSelected onRecyclerViewSelected;
 
     //Construtor para receber a lista
-    //TROCAR NA QUESTAO 4 O CONTEXT
-    AddressesAdapter(List<String> addressesList, Context context){
+    AddressesAdapter(List<String> addressesList){
         this.addressesList = addressesList;
-        this.context = context;
     }
 
     //Infla o layout XML
@@ -65,16 +65,20 @@ public class AddressesAdapter extends RecyclerView.Adapter<AddressesAdapter.View
             ButterKnife.bind(this, itemView);
         }
 
+        /*
+        * inicia a intent por meio da interface para nao precisar passar um contexto por parametro para o Adapter
+        */
         @OnClick(R.id.address_item)
         public void intentMapa(){
-            Intent intentMapa = new Intent(Intent.ACTION_VIEW);
-            intentMapa.setData(Uri.parse("geo: 0,0?q=" + tvAddress.getText().toString()));
-            if(intentMapa.resolveActivity(context.getPackageManager())!=null){
-                context.startActivity(intentMapa);
-            }
-            else {
-                Toast.makeText(context, "Impossivel abiri recursos", Toast.LENGTH_SHORT).show();
-            }
+            if(onRecyclerViewSelected != null)
+                onRecyclerViewSelected.onClickItemView(itemView, getAdapterPosition(), tvAddress.getText().toString());
         }
+    }
+
+    /*
+     * Funcao responsavel por setar a interface
+     */
+    public void setOnRecyclerViewSelected(OnRecyclerViewSelected onRecyclerViewSelected){
+        this.onRecyclerViewSelected = onRecyclerViewSelected;
     }
 }
