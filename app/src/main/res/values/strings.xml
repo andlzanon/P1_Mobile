@@ -4,4 +4,10 @@
     <string name="show_addresses">Mostrar Endereços</string>
     <string name="address">Endereço</string>
     <string name="add">Adicionar</string>
+    <string name="addEndereco">Digite o endereço que deseja adicionar</string>
+    <string name="enderecoCadastrado">Endereço cadastrado com sucesso</string>
+    <string name="erroRecursos">Impossivel abir recursos</string>
+    <string name="contentLogo">Logo do app</string>
+    <string name="semEndereco">Não há endereços cadastrados</string>
+
 </resources>

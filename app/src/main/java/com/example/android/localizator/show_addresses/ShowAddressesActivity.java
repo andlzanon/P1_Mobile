@@ -72,6 +72,6 @@ public class ShowAddressesActivity extends AppCompatActivity {
     * toast que avisa que o usuario nao possui um app de mapas
     */
     public void toastSemRecurso(){
-        Toast.makeText(this, "Impossivel abiri recursos", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.erroRecursos, Toast.LENGTH_SHORT).show();
     }
 }

@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity implements MainView{
     // Faz o bind das views por meio do butterknife
     @BindView(R.id.btn_add_address) Button btnAddAddress;
     @BindView(R.id.btn_show_addresses) Button btnShowAddresses;
-
-    MainPresenter mainPresenter;
+    
+    private MainPresenter mainPresenter;
     // Nao eh mais necessario devido ao butterknife
     //Button btnAddAddress;
     //Button btnShowAddresses;
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements MainView{
      */
     @Override
     public void toastSemEnderecos() {
-        Toast.makeText(MainActivity.this, "Não há endereços cadastrados", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, R.string.semEndereco, Toast.LENGTH_SHORT).show();
     }
 
     /**

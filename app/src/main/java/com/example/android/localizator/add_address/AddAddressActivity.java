@@ -15,6 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+// A classe implementa a interface AddAddressView
 public class AddAddressActivity extends AppCompatActivity implements  AddAddressView {
 
     // Nao eh mais necessario devido ao butterknife
@@ -25,6 +26,8 @@ public class AddAddressActivity extends AppCompatActivity implements  AddAddress
     @BindView(R.id.edt_address) TextView edtAddress;
     @BindView(R.id.btn_add) Button btnAdd;
     AddAddressPresenter addAddressPresenter;
+
+    public static final String EXTRA_ENDERECO= "address_name";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +88,7 @@ public class AddAddressActivity extends AppCompatActivity implements  AddAddress
      */
     @Override
     public void toastDigiteEndereco() {
-        Toast.makeText(AddAddressActivity.this, "Digite o endereço que deseja adicionar", Toast.LENGTH_SHORT).show();
+        Toast.makeText(AddAddressActivity.this, R.string.addEndereco, Toast.LENGTH_SHORT).show();
     }
 
     /*
@@ -95,10 +98,10 @@ public class AddAddressActivity extends AppCompatActivity implements  AddAddress
     public void intentTextoEndereco() {
         //retorna o endereço para a MainActivity
         Intent resultIntent = new Intent();
-        resultIntent.putExtra("movie_name", edtAddress.getText().toString());
+        resultIntent.putExtra(EXTRA_ENDERECO, edtAddress.getText().toString());
         setResult(Activity.RESULT_OK, resultIntent);
         // Exibe toast para indicar que endereco foi adicionado
-        Toast.makeText(AddAddressActivity.this, "Endereço cadastrado com sucesso", Toast.LENGTH_SHORT).show();
+        Toast.makeText(AddAddressActivity.this, R.string.enderecoCadastrado , Toast.LENGTH_SHORT).show();
         finish();
     }
 }
