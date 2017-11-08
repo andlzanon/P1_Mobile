@@ -5,4 +5,8 @@ package com.example.android.localizator.add_address;
  */
 
 public interface AddAddressView {
+    //funcao que mostra toast de endereco nao digitado
+    public void toastDigiteEndereco();
+    //funcao que passa o nome do endereco para a MainActivity
+    public void intentTextoEndereco();
 }

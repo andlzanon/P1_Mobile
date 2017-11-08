@@ -64,7 +64,9 @@ public class AddAddressActivity extends AppCompatActivity implements  AddAddress
     @OnClick(R.id.btn_add)
     public void onClickBtnAdd(){
 
-        //verifica se há um endereço digitado
+        addAddressPresenter.adicaoDeEndereco(edtAddress.getText().toString());
+        /* parte de codigo desnecessario devido a implementacao do padrao de projeto MVP
+        verifica se há um endereço digitado
         if (edtAddress.getText().toString().isEmpty()){
             Toast.makeText(AddAddressActivity.this, "Digite o endereço que deseja adicionar", Toast.LENGTH_SHORT).show();
         }else {
@@ -75,8 +77,28 @@ public class AddAddressActivity extends AppCompatActivity implements  AddAddress
             // Exibe toast para indicar que endereco foi adicionado
             Toast.makeText(AddAddressActivity.this, "Endereço cadastrado com sucesso", Toast.LENGTH_SHORT).show();
             finish();
-        }
+        } */
     }
 
+    /*
+     *  funcao que mostra toast de endereco nao digitado
+     */
+    @Override
+    public void toastDigiteEndereco() {
+        Toast.makeText(AddAddressActivity.this, "Digite o endereço que deseja adicionar", Toast.LENGTH_SHORT).show();
+    }
 
+    /*
+     * funcao que passa o nome do endereco para a MainActivity
+     */
+    @Override
+    public void intentTextoEndereco() {
+        //retorna o endereço para a MainActivity
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("movie_name", edtAddress.getText().toString());
+        setResult(Activity.RESULT_OK, resultIntent);
+        // Exibe toast para indicar que endereco foi adicionado
+        Toast.makeText(AddAddressActivity.this, "Endereço cadastrado com sucesso", Toast.LENGTH_SHORT).show();
+        finish();
+    }
 }
